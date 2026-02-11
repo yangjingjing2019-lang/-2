@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>普通話輕聲練習大本營</title>
+    <style>
+        :root {
+            --primary-color: #ff85a2;
+            --bg-color: #fff5f7;
+            --card-bg: #ffffff;
+            --text-color: #d66d85;
+            --shadow: 8px 8px 18px #f0e6e8, -8px -8px 18px #ffffff;
+            --inner-shadow: inset 4px 4px 8px #f0e6e8, inset -4px -4px 8px #ffffff;
+            --font-main: "Yuanti SC", "YouYuan", "STYuanti-SC-Regular", "微軟正黑體", "Microsoft JhengHei", sans-serif;
+        }
+
+        * {
+            -webkit-tap-highlight-color: transparent;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            font-family: var(--font-main);
+            color: #444;
+            min-height: 100vh;
+        }
+
+        /* 右上角固定標題 */
+        .fixed-header-title {
+            position: fixed;
+            top: 15px;
+            right: 20px;
+            font-size: 14px;
+            color: var(--text-color);
+            z-index: 1000;
+            font-weight: bold;
+            background: rgba(255, 245, 247, 0.9);
+            padding: 5px 12px;
+            border-radius: 20px;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .container {
+            max-width: 900px; /* 縮小最大寬度以配合 3 列佈局 */
+            margin: 0 auto;
+            padding: 70px 25px 50px;
+        }
+
+        /* 歡迎區域 */
+        .welcome-section {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .welcome-section h1 {
+            color: var(--primary-color);
+            font-size: 34px;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+
+        .welcome-section p {
+            color: #b5838d;
+            font-size: 16px;
+            margin: 0;
+        }
+
+        /* 章節標題 */
+        .section-title {
+            font-size: 20px;
+            color: var(--text-color);
+            margin: 40px 0 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: bold;
+        }
+
+        .section-title::before {
+            content: "";
+            display: inline-block;
+            width: 6px;
+            height: 22px;
+            background: var(--primary-color);
+            border-radius: 10px;
+        }
+
+        /* 遊戲網格佈局：設定一行 3 個 */
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 25px;
+        }
+
+        /* 遊戲卡片設計 */
+        .game-card {
+            background: var(--card-bg);
+            border-radius: 30px;
+            padding: 35px 20px;
+            text-align: center;
+            text-decoration: none;
+            color: inherit;
+            box-shadow: var(--shadow);
+            border: 2.5px solid white;
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .game-card:active {
+            transform: scale(0.96);
+            box-shadow: var(--inner-shadow);
+        }
+
+        .game-icon {
+            font-size: 45px;
+            margin-bottom: 18px;
+            filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.05));
+        }
+
+        .game-name {
+            font-weight: bold;
+            font-size: 17px;
+            color: #444;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .game-status {
+            font-size: 12px;
+            padding: 5px 15px;
+            border-radius: 15px;
+            background: #fff0f3;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        /* 鎖定狀態 */
+        .game-card.locked {
+            opacity: 0.75;
+            cursor: default;
+            box-shadow: none;
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .game-card.locked .game-status {
+            background: #e0e0e0;
+            color: #888;
+        }
+
+        .copyright {
+            margin-top: 60px;
+            font-size: 12px;
+            color: #b5838d;
+            text-align: center;
+            line-height: 1.8;
+            padding-bottom: 40px;
+        }
+
+        /* 移動端適配：手機端改為一行 2 個或 1 個 */
+        @media (max-width: 768px) {
+            .game-grid {
+                grid-template-columns: repeat(2, 1fr); /* 平板/大手機一行 2 個 */
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 430px) {
+            .game-grid {
+                grid-template-columns: repeat(1, 1fr); /* 小手機一行 1 個以保證美觀 */
+                max-width: 280px;
+                margin: 0 auto;
+            }
+            .welcome-section h1 { font-size: 26px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="fixed-header-title">普通話輕聲詞語練習大本營</div>
+
+<div class="container">
+    <div class="welcome-section">
+        <h1>🌸 普通話輕聲練習大本營</h1>
+        <p>點選下方卡片，開啟您的趣味學習之旅</p>
+    </div>
+
+    <div class="section-title">輕聲詞語翻卡系列</div>
+    <div class="game-grid" id="grid-cards">
+        </div>
+
+    <div class="section-title">趣味挑戰系列</div>
+    <div class="game-grid" id="grid-challenges">
+        </div>
+
+    <div class="copyright">
+        網頁僅供 VTC 內部使用。<br>
+        職業訓練局普通話培訓測試中心 版權所有。
+    </div>
+</div>
+
+<script>
+    // 遊戲數據配置
+    const flipGames = [
+        { name: "輕聲詞語翻卡練習 1", url: "https://yangjingjing2019-lang.github.io/pinyin-memory-game/", icon: "🌸", status: "已上線" },
+        { name: "輕聲詞語翻卡練習 2", url: "https://yangjingjing2019-lang.github.io/qingshengci2/", icon: "🃏", status: "已上線" },
+        { name: "輕聲詞語翻卡練習 3", url: "#", icon: "💎", status: "敬請期待" },
+        { name: "輕聲詞語翻卡練習 4", url: "#", icon: "🌟", status: "敬請期待" },
+        { name: "輕聲詞語翻卡練習 5", url: "#", icon: "🍎", status: "敬請期待" },
+        { name: "輕聲詞語翻卡練習 6", url: "#", icon: "🎈", status: "敬請期待" }
+    ];
+
+    const challengeGames = [
+        { name: "趣味挑戰 1", url: "#", icon: "🚀", status: "敬請期待" },
+        { name: "趣味挑戰 2", url: "#", icon: "🎯", status: "敬請期待" },
+        { name: "趣味挑戰 3", url: "#", icon: "🧩", status: "敬請期待" },
+        { name: "趣味挑戰 4", url: "#", icon: "👾", status: "敬請期待" }
+    ];
+
+    window.onload = () => {
+        renderGames('grid-cards', flipGames);
+        renderGames('grid-challenges', challengeGames);
+    };
+
+    function renderGames(containerId, games) {
+        const container = document.getElementById(containerId);
+        container.innerHTML = games.map(game => `
+            <a href="${game.url !== '#' ? game.url : 'javascript:void(0)'}" 
+               class="game-card ${game.status === '敬請期待' ? 'locked' : ''}"
+               ${game.url !== '#' ? `target="_self"` : 'onclick="alert(\'即將推出，敬請期待！\')"'}>
+                <div class="game-icon">${game.icon}</div>
+                <div class="game-name">${game.name}</div>
+                <div class="game-status">${game.status}</div>
+            </a>
+        `).join('');
+    }
+</script>
+
+</body>
+</html>
