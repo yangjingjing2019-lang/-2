@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>普通話輕聲練習大本營</title>
     <style>
+        /* 定義全局顏色與字體 */
         :root {
             --primary-color: #ff85a2;
             --bg-color: #fff5f7;
@@ -45,7 +46,7 @@
         }
 
         .container {
-            max-width: 900px; /* 縮小最大寬度以配合 3 列佈局 */
+            max-width: 900px; /* 控制大螢幕下的寬度 */
             margin: 0 auto;
             padding: 70px 25px 50px;
         }
@@ -89,7 +90,7 @@
             border-radius: 10px;
         }
 
-        /* 遊戲網格佈局：設定一行 3 個 */
+        /* 遊戲網格：電腦端預設 3 列 */
         .game-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr); 
@@ -113,6 +114,7 @@
             position: relative;
         }
 
+        /* 點擊回饋：微縮小與內凹陰影 */
         .game-card:active {
             transform: scale(0.96);
             box-shadow: var(--inner-shadow);
@@ -141,7 +143,7 @@
             font-weight: bold;
         }
 
-        /* 鎖定狀態 */
+        /* 鎖定/未開發狀態 */
         .game-card.locked {
             opacity: 0.75;
             cursor: default;
@@ -163,21 +165,41 @@
             padding-bottom: 40px;
         }
 
-        /* 移動端適配：手機端改為一行 2 個或 1 個 */
+        /* --- 核心修改：響應式適配 (手機端一行 2 個) --- */
         @media (max-width: 768px) {
+            .container {
+                padding: 60px 15px 30px; /* 縮小螢幕左右邊距 */
+            }
+            .welcome-section h1 { 
+                font-size: 28px; 
+            }
             .game-grid {
-                grid-template-columns: repeat(2, 1fr); /* 平板/大手機一行 2 個 */
-                gap: 20px;
+                grid-template-columns: repeat(2, 1fr); /* 手機端強制 2 列 */
+                gap: 15px; /* 縮小間距防止溢出 */
+                max-width: 100%; /* 解除寬度限制，讓卡片填滿螢幕 */
+                margin: 0 auto;
+            }
+            .game-card {
+                padding: 25px 10px; /* 縮小內邊距防止內容擠壓 */
+                border-radius: 20px;
+            }
+            .game-icon {
+                font-size: 38px; /* 圖標稍微縮小 */
+                margin-bottom: 10px;
+            }
+            .game-name {
+                font-size: 15px; /* 字體稍微縮小確保美觀 */
             }
         }
 
-        @media (max-width: 430px) {
+        @media (max-width: 380px) {
+            /* 針對極小螢幕手機的微調 */
             .game-grid {
-                grid-template-columns: repeat(1, 1fr); /* 小手機一行 1 個以保證美觀 */
-                max-width: 280px;
-                margin: 0 auto;
+                gap: 10px;
             }
-            .welcome-section h1 { font-size: 26px; }
+            .game-name {
+                font-size: 14px;
+            }
         }
     </style>
 </head>
@@ -187,7 +209,7 @@
 
 <div class="container">
     <div class="welcome-section">
-        <h1>🌸 普通話輕聲練習大本營</h1>
+        <h1> 普通話輕聲練習大本營</h1>
         <p>點選下方卡片，開啟您的趣味學習之旅</p>
     </div>
 
@@ -206,7 +228,10 @@
 </div>
 
 <script>
-    // 遊戲數據配置
+    /**
+     * 遊戲數據配置
+     * 如需新增遊戲，直接在對應的數組中添加對象即可
+     */
     const flipGames = [
         { name: "輕聲詞語翻卡練習 1", url: "https://yangjingjing2019-lang.github.io/pinyin-memory-game/", icon: "🌸", status: "已上線" },
         { name: "輕聲詞語翻卡練習 2", url: "https://yangjingjing2019-lang.github.io/qingshengci2/", icon: "🃏", status: "已上線" },
@@ -223,11 +248,15 @@
         { name: "趣味挑戰 4", url: "#", icon: "👾", status: "敬請期待" }
     ];
 
+    // 網頁載入後執行渲染
     window.onload = () => {
         renderGames('grid-cards', flipGames);
         renderGames('grid-challenges', challengeGames);
     };
 
+    /**
+     * 渲染函數：將數據轉換為 HTML
+     */
     function renderGames(containerId, games) {
         const container = document.getElementById(containerId);
         container.innerHTML = games.map(game => `
