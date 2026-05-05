@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>普通話練習大本營 </title>
+    <title>普通話練習大本營</title>
     <style>
         :root {
             --primary-color: #ff85a2;
@@ -141,13 +141,13 @@
         { name: "不的變調練習 2", url: "#", icon: "📒", status: "敬請期待" }
     ];
 
-    // 新增：聲調第三聲專項練習數據
+    // 2. 聲調第三聲專項練習數據
     const tone3Games = [
-        { name: "第三聲發音練習 1", url: "https://echo02-game.github.io/psctone32-02/", icon: "🔔", status: "NEW" }, // 預留位置 1
-        { name: "第三聲發音練習 2", url: "#", icon: "🔉", status: "敬請期待" }  // 預留位置 2
+        { name: "第三聲發音練習 1", url: "https://echo02-game.github.io/psctone32-02/", icon: "🔔", status: "NEW" },
+        { name: "第三聲發音練習 2", url: "#", icon: "🔉", status: "敬請期待" }
     ];
 
-    // 2. 輕聲詞語翻卡數據
+    // 3. 輕聲詞語翻卡數據
     const flipGames = [
         { name: "輕聲詞語翻卡練習 1", url: "https://yangjingjing2019-lang.github.io/pinyin-memory-game/", icon: "🌸", status: "已上線" },
         { name: "輕聲詞語翻卡練習 2", url: "https://yangjingjing2019-lang.github.io/qingshengci2/", icon: "🃏", status: "已上線" },
@@ -157,7 +157,7 @@
         { name: "輕聲詞語翻卡練習 6", url: "https://yangjingjing2019-lang.github.io/qingshengci6/", icon: "🍀", status: "已上線" }, 
     ];
 
-    // 3. 趣味挑戰數據
+    // 4. 趣味挑戰數據
     const challengeGames = [
         { name: "趣味挑戰 1", url: "https://yangjingjing2019-lang.github.io/qingshengcigame1/", icon: "🚀", status: "已上線" },
         { name: "名量詞挑戰 ", url: "https://yangjingjing2019-lang.github.io/measurewords1/", icon: "🎯", status: "已上線" },
@@ -165,15 +165,17 @@
         { name: "趣味挑戰 4", url: "#", icon: "👾", status: "敬請期待" }  
     ];
 
-    window.onload = () => {
+    // 核心優化：使用 DOMContentLoaded 替換 window.onload，大幅提升加載感官速度
+    document.addEventListener('DOMContentLoaded', () => {
         renderGames('grid-yi-series', yiGames);
-        renderGames('grid-tone3-series', tone3Games); // 執行第三聲專區渲染
+        renderGames('grid-tone3-series', tone3Games); 
         renderGames('grid-qingsheng-flip', flipGames);
         renderGames('grid-challenges', challengeGames);
-    };
+    });
 
     function renderGames(containerId, games) {
         const container = document.getElementById(containerId);
+        if (!container) return;
         container.innerHTML = games.map(game => {
             const isLocked = game.status === '敬請期待';
             const isNew = game.status === 'NEW';
@@ -190,7 +192,7 @@
     }
 </script>
 
-<!-- 訪問統計代碼保持不變 -->
+<!-- 訪問統計代碼 -->
 <div id="sfce7qkp21bpdbudp5k427ayjerxcstax36"></div>
 <script type="text/javascript" src="https://counter1.optistats.ovh/private/counter.js?c=e7qkp21bpdbudp5k427ayjerxcstax36&down=async" async></script>
 <noscript>
