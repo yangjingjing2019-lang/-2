@@ -109,16 +109,15 @@
 
 <div class="container">
     <div class="welcome-section">
-        <h1>普通話練習大本營</h1>
-        <p>探索聲調與輕聲的奧秘，讓發音更標準！</p>
+     <h1>普通話練習大本營</h1>
+        <p>探索普通話聲、韻、調的奧秘，讓發音更標準！</p>
     </div>
+
+    <div class="section-title tone3-section"><span class="tone3-title">四聲專項練習</span></div>
+    <div class="game-grid" id="grid-tone3-series"></div>
 
     <div class="section-title special-section"><span class="special-title">「一」、「不」的變調專題系列</span></div>
     <div class="game-grid" id="grid-yi-series"></div>
-
-    <!-- 新增：四聲專項練習區塊 -->
-    <div class="section-title tone3-section"><span class="tone3-title">四聲專項練習</span></div>
-    <div class="game-grid" id="grid-tone3-series"></div>
 
     <div class="section-title">輕聲詞語翻卡系列</div>
     <div class="game-grid" id="grid-qingsheng-flip"></div>
@@ -133,18 +132,18 @@
 </div>
 
 <script>
-    // 1. 「一」、「不」的變調專題數據
+    // 1. 四聲專項練習數據
+    const tone3Games = [
+        { name: "第三聲發音練習 1", url: "https://echo02-game.github.io/psctone32-02/", icon: "🔔", status: "NEW" },
+        { name: "一四聲發音練習 2", url: "https://echo02-game.github.io/psctone14-02/", icon: "🔉", status: "NEW" }
+    ];
+
+    // 2. 「一」、「不」的變調專題數據
     const yiGames = [
         { name: "一的變調翻卡練習", url: "https://yangjingjing2019-lang.github.io/yitone/", icon: "🔢", status: "NEW" },
         { name: "一的變調測驗挑戰", url: "https://yangjingjing2019-lang.github.io/yitonetest/", icon: "✍️", status: "NEW" },
         { name: "不的變調練習", url: "https://yangjingjing2019-lang.github.io/butonetest/", icon: "📚", status: "NEW" },
         { name: "不的變調練習 2", url: "#", icon: "📒", status: "敬請期待" }
-    ];
-
-    // 2. 四聲專項練習數據
-    const tone3Games = [
-        { name: "第三聲發音練習 1", url: "https://echo02-game.github.io/psctone32-02/", icon: "🔔", status: "NEW" },
-        { name: "一四聲發音練習 2", url: "https://echo02-game.github.io/psctone14-02/", icon: "🔉", status: "NEW" }
     ];
 
     // 3. 輕聲詞語翻卡數據
@@ -164,7 +163,7 @@
         { name: "趣味挑戰 3", url: "#", icon: "🧩", status: "敬請期待" }, 
         { name: "趣味挑戰 4", url: "#", icon: "👾", status: "敬請期待" }  
     ];
-
+</script>
     // 核心優化：使用 DOMContentLoaded 替換 window.onload，大幅提升加載感官速度
     document.addEventListener('DOMContentLoaded', () => {
         renderGames('grid-yi-series', yiGames);
