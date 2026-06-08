@@ -109,7 +109,7 @@
 
 <div class="container">
     <div class="welcome-section">
-     <h1>普通話練習大本營</h1>
+        <h1>普通話練習大本營</h1>
         <p>探索普通話聲、韻、調的奧秘，讓發音更標準！</p>
     </div>
 
@@ -127,7 +127,7 @@
 
     <div class="copyright">
         網頁僅供內部使用。<br>
-       普通話培訓測試中心 版權所有。
+        普通話培訓測試中心 版權所有。
     </div>
 </div>
 
@@ -163,6 +163,7 @@
         { name: "趣味挑戰 3", url: "#", icon: "🧩", status: "敬請期待" }, 
         { name: "趣味挑戰 4", url: "#", icon: "👾", status: "敬請期待" }  
     ];
+
     // 核心優化：使用 DOMContentLoaded 替換 window.onload，大幅提升加載感官速度
     document.addEventListener('DOMContentLoaded', () => {
         renderGames('grid-yi-series', yiGames);
@@ -171,7 +172,7 @@
         renderGames('grid-challenges', challengeGames);
     });
 
-   function renderGames(containerId, games) {
+    function renderGames(containerId, games) {
         const container = document.getElementById(containerId);
         if (!container) return;
         container.innerHTML = games.map(game => {
@@ -186,18 +187,8 @@
             `;
         }).join('');
     }
-                   class="game-card ${isLocked ? 'locked' : ''}"
-                   ${game.url !== '#' ? `target="_self"` : 'onclick="alert(\'即將推出，敬請期待！\')"'}>
-                    <div class="game-icon">${game.icon}</div>
-                    <div class="game-name">${game.name}</div>
-                    <div class="game-status ${isNew ? 'status-new' : ''}">${game.status}</div>
-                </a>
-            `;
-        }).join('');
-    }
 </script>
 
-<!-- 訪問統計代碼 -->
 <div id="sfce7qkp21bpdbudp5k427ayjerxcstax36"></div>
 <script type="text/javascript" src="https://counter1.optistats.ovh/private/counter.js?c=e7qkp21bpdbudp5k427ayjerxcstax36&down=async" async></script>
 <noscript>
