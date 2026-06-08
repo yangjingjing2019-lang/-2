@@ -163,7 +163,6 @@
         { name: "趣味挑戰 3", url: "#", icon: "🧩", status: "敬請期待" }, 
         { name: "趣味挑戰 4", url: "#", icon: "👾", status: "敬請期待" }  
     ];
-</script>
     // 核心優化：使用 DOMContentLoaded 替換 window.onload，大幅提升加載感官速度
     document.addEventListener('DOMContentLoaded', () => {
         renderGames('grid-yi-series', yiGames);
@@ -179,7 +178,7 @@
             const isLocked = game.status === '敬請期待';
             const isNew = game.status === 'NEW';
             return `
-                <a href="${game.url !== '#' ? game.url : 'javascript:void(0)'}" 
+<a href="${game.url !== '#' ? game.url : 'javascript:void(0)'}" class="game-card ${isLocked ? 'locked' : ''}" ${game.url !== '#' ? `target="_self"` : 'onclick="alert(\'即將推出，敬請期待！\')"'}>
                    class="game-card ${isLocked ? 'locked' : ''}"
                    ${game.url !== '#' ? `target="_self"` : 'onclick="alert(\'即將推出，敬請期待！\')"'}>
                     <div class="game-icon">${game.icon}</div>
