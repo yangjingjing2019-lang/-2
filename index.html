@@ -171,14 +171,21 @@
         renderGames('grid-challenges', challengeGames);
     });
 
-    function renderGames(containerId, games) {
+   function renderGames(containerId, games) {
         const container = document.getElementById(containerId);
         if (!container) return;
         container.innerHTML = games.map(game => {
             const isLocked = game.status === '敬請期待';
             const isNew = game.status === 'NEW';
             return `
-<a href="${game.url !== '#' ? game.url : 'javascript:void(0)'}" class="game-card ${isLocked ? 'locked' : ''}" ${game.url !== '#' ? `target="_self"` : 'onclick="alert(\'即將推出，敬請期待！\')"'}>
+                <a href="${game.url !== '#' ? game.url : 'javascript:void(0)'}" class="game-card ${isLocked ? 'locked' : ''}" ${game.url !== '#' ? `target="_self"` : 'onclick="alert(\'即將推出，敬請期待！\')"'}>
+                    <div class="game-icon">${game.icon}</div>
+                    <div class="game-name">${game.name}</div>
+                    <div class="game-status ${isNew ? 'status-new' : ''}">${game.status}</div>
+                </a>
+            `;
+        }).join('');
+    }
                    class="game-card ${isLocked ? 'locked' : ''}"
                    ${game.url !== '#' ? `target="_self"` : 'onclick="alert(\'即將推出，敬請期待！\')"'}>
                     <div class="game-icon">${game.icon}</div>
